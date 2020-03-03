@@ -1,4 +1,4 @@
-module webpbin
+module github.com/phanletrunghieu/go-webpbin
 
 go 1.13
 
