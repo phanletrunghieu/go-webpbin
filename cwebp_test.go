@@ -1,14 +1,15 @@
 package webpbin
 
 import (
+	"fmt"
+	"image/jpeg"
+	"io"
 	"net/http"
 	"os"
-	"io"
-	"github.com/stretchr/testify/assert"
 	"testing"
-	"image/jpeg"
+
+	"github.com/stretchr/testify/assert"
 	"golang.org/x/image/webp"
-	"fmt"
 )
 
 func init() {

@@ -3,14 +3,20 @@ package webpbin
 import (
 	"errors"
 	"fmt"
-	"github.com/nickalie/go-binwrapper"
 	"image"
 	"io"
+
+	"github.com/nickalie/go-binwrapper"
 )
 
 type cropInfo struct {
 	x      int
 	y      int
+	width  int
+	height int
+}
+
+type resizeInfo struct {
 	width  int
 	height int
 }
@@ -26,6 +32,7 @@ type CWebP struct {
 	output     io.Writer
 	quality    int
 	crop       *cropInfo
+	resize     *resizeInfo
 }
 
 // NewCWebP creates new CWebP instance.
@@ -105,6 +112,12 @@ func (c *CWebP) Crop(x, y, width, height int) *CWebP {
 	return c
 }
 
+// Resize the source to a rectangle.
+func (c *CWebP) Resize(width, height int) *CWebP {
+	c.resize = &resizeInfo{width, height}
+	return c
+}
+
 // Run starts cwebp with specified parameters.
 func (c *CWebP) Run() error {
 	defer c.BinWrapper.Reset()
@@ -115,6 +128,10 @@ func (c *CWebP) Run() error {
 
 	if c.crop != nil {
 		c.Arg("-crop", fmt.Sprintf("%d", c.crop.x), fmt.Sprintf("%d", c.crop.y), fmt.Sprintf("%d", c.crop.width), fmt.Sprintf("%d", c.crop.height))
+	}
+
+	if c.resize != nil {
+		c.Arg("-resize", fmt.Sprintf("%d", c.resize.width), fmt.Sprintf("%d", c.resize.height))
 	}
 
 	output, err := c.getOutput()

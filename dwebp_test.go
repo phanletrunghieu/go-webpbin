@@ -1,11 +1,12 @@
 package webpbin
 
 import (
-	"testing"
-	"github.com/stretchr/testify/assert"
-	"os"
-	"golang.org/x/image/webp"
 	"image/png"
+	"os"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+	"golang.org/x/image/webp"
 )
 
 func TestVersionDWebP(t *testing.T) {

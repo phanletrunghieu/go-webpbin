@@ -1,8 +1,9 @@
 package webpbin
 
 import (
-	"testing"
 	"os"
+	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/image/webp"
 )

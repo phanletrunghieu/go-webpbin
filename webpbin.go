@@ -2,13 +2,14 @@ package webpbin
 
 import (
 	"bytes"
-	"github.com/nickalie/go-binwrapper"
 	"image"
 	"image/png"
 	"io"
 	"io/ioutil"
 	"runtime"
 	"strings"
+
+	"github.com/nickalie/go-binwrapper"
 )
 
 var skipDownload bool
